@@ -10,7 +10,7 @@
     <StackLayout>
 
         <Label Text="ArcTouch Movie Search" FontSize="26" HorizontalOptions="CenterAndExpand" TextColor="DeepPink" Margin="20,0" />
-        <SearchBar x:Name="searchbar" Text="{Binding Term, Mode=TwoWay}" SearchCommand="{Binding SearchCommand}" HorizontalOptions="CenterAndExpand" Margin="20,0" Placeholder="Search"/>
+        <SearchBar x:Name="searchbar" Text="{Binding Term}" SearchCommand="{Binding SearchCommand}" HorizontalOptions="CenterAndExpand" Margin="20,0" Placeholder="Search"/>
 
         <ListView ItemsSource="{Binding Items}"
                   ItemTapped="Handle_ItemTapped"                

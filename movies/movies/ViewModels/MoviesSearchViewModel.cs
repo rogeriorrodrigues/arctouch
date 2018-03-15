@@ -50,6 +50,8 @@ namespace movies.ViewModels
 
         }
 
+
+
         public string Term
         {
             get{
