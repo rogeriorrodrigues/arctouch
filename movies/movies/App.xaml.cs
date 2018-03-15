@@ -1,14 +1,18 @@
-﻿using Xamarin.Forms;
+﻿using movies.ViewModels;
+using movies.Views;
+using Xamarin.Forms;
 
 namespace movies
 {
     public partial class App : Application
     {
+        public MovieViewModel teste = new MovieViewModel();
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new moviesPage();
+            MainPage = new MoviesTabbedPage();
         }
 
         protected override void OnStart()

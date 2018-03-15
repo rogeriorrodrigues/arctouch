@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:local="clr-namespace:movies.ViewModels"
+             x:Class="movies.Views.MoveisListPage">
+
+    <ContentPage.BindingContext>
+        <local:MovieViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+
+        <Label Text="ArcTouch Movie" FontSize="24" HorizontalOptions="CenterAndExpand" TextColor="DeepPink" Margin="20,10" />
+       
+
+        <ListView ItemsSource="{Binding Items}"
+                  ItemTapped="Handle_ItemTapped"                
+                  CachingStrategy="RecycleElement"
+                  ItemSelected="Handle_ItemSelected"
+                  HasUnevenRows="True" RowHeight="100">
+
+            <ListView.Behaviors>
+                <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+            </ListView.Behaviors>
+
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" >
+                            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                <Image Source="{Binding PosterLittle}" WidthRequest="92" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding title}"  FontSize="20" FontAttributes="Bold" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding release_date, StringFormat='{0:D}'}"  FontSize="20" FontAttributes="Bold" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.Footer>
+                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                    <!-- set the footer to have a zero height when invisible -->
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                            <Setter Property="HeightRequest" Value="0" />
+                        </Trigger>
+                    </Grid.Triggers>
+                    <!-- the loading content -->
+                    <Label Text="Loading..." TextColor="DeepPink" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                </Grid>
+            </ListView.Footer>
+
+        </ListView>
+
+    </StackLayout>
+</ContentPage>
