@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:movies.Views;assembly=movies"
+            x:Class="movies.Views.MoviesTabbedPage">
+    <TabbedPage.Children>
+        <local:MoveisListPage Title="Movies" Icon="movie"/>
+        <local:MoviesSearchPage Title="Search" Icon="Search"/>
+    </TabbedPage.Children>
+</TabbedPage>
