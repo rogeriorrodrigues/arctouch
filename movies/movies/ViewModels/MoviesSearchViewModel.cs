@@ -13,7 +13,7 @@ namespace movies.ViewModels
         private const int PageSize = 10;
         readonly DataService _dataService = new DataService();
 
-        public InfiniteScrollCollection<Result> Items { get; set; }
+        public InfiniteScrollCollection<Result> Items { get; }
 
         private string _term;
 
@@ -21,8 +21,8 @@ namespace movies.ViewModels
 
         public MoviesSearchViewModel()
         {
-            SearchCommand = new Command(() =>
-            {
+            //SearchCommand = new Command(() =>
+            //{
                 Items = new InfiniteScrollCollection<Result>
                 {
                     OnLoadMore = async () =>
@@ -45,7 +45,7 @@ namespace movies.ViewModels
                 };
 
                 DownloadDataAsync();
-            });
+            //});
             
 
         }

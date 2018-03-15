@@ -82,7 +82,7 @@ namespace movies.Helpers
 
             //Fazendo um GET no serviço
 
-            string sURL = "https://api.themoviedb.org/3/search/movie?api_key=1f54bd990f1cdfb230adb312546d765d&language=en-US&query="+ query +"&page=1&include_adult=false&page=" + pageIndex + "";
+            string sURL = "https://api.themoviedb.org/3/search/movie?api_key=1f54bd990f1cdfb230adb312546d765d&language=en-US&query=strange&page=1&include_adult=false&page=" + pageIndex + "";
             var uri = new Uri(string.Format(sURL));
             var responsepaci = await client.GetAsync(uri);
 
