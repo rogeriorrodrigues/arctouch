@@ -5,6 +5,6 @@
             x:Class="movies.Views.MoviesTabbedPage">
     <TabbedPage.Children>
         <local:MoveisListPage Title="Movies" Icon="movie"/>
-        <local:MoviesSearchPage Title="Search" Icon="Search"/>
+        <local:MoviesSearchPage Title="Search" Icon="search"/>
     </TabbedPage.Children>
 </TabbedPage>

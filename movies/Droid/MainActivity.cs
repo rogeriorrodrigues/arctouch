@@ -7,6 +7,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading.Forms.Droid;
+using Acr.UserDialogs;
 
 namespace movies.Droid
 {
@@ -19,6 +21,9 @@ namespace movies.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+
+            UserDialogs.Init(this);
+            CachedImageRenderer.Init();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 

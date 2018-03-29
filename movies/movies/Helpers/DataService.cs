@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -11,64 +12,75 @@ namespace movies.Helpers
 {
     public class DataService
     {
+        HttpClient client = new HttpClient();
        
         public async Task<IList<Result>> GetItemsAsync(int pageIndex, int pageSize)
         {
-            await Task.Delay(2000);
-
-            HttpClient client = new HttpClient();
 
             //Fazendo um GET no serviço
 
-            string sURL = "https://api.themoviedb.org/3/movie/popular?api_key=1f54bd990f1cdfb230adb312546d765d&language=en-US&page="+ pageIndex +"";
+            string sURL = Settings.ApiUrl + "/movie/popular?api_key="+ Settings.ApiKey +"&language="+ Settings.Language +"&page="+ pageIndex +"";
             var uri = new Uri(string.Format(sURL));
-            var responsepaci = await client.GetAsync(uri);
-
-
             //Classe para deserializar o retorno
             var resultMovies = new MovieResults();
 
-            //verificando se o status code é OK
-            if (responsepaci.IsSuccessStatusCode)
+            try
             {
-                //pegando o retorno de lendo em async
-                var content = responsepaci.Content.ReadAsStringAsync().Result;
+                var responsepaci = await client.GetAsync(uri);
+
+                //verificando se o status code é OK
+                if (responsepaci.IsSuccessStatusCode)
+                {
+                    //pegando o retorno de lendo em async
+                    var content = responsepaci.Content.ReadAsStringAsync().Result;
 
 
-                //deserializando o conteudo para a classe result
-                resultMovies = JsonConvert.DeserializeObject<MovieResults>(content);
+                    //deserializando o conteudo para a classe result
+                    resultMovies = JsonConvert.DeserializeObject<MovieResults>(content);
+
+                }
 
             }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
+
 
             return resultMovies.results;
+
         }
 
         public async Task<MovieDetailsResult> GetDetailsAsync(int movieId)
         {
-            await Task.Delay(2000);
-
-            HttpClient client = new HttpClient();
 
             //Fazendo um GET no serviço
 
-            string sURL = "https://api.themoviedb.org/3/movie/"+ movieId +"?api_key=1f54bd990f1cdfb230adb312546d765d&language=en-US";
+            string sURL = Settings.ApiUrl + "/movie/"+ movieId +"?api_key="+ Settings.ApiKey +"&language="+ Settings.Language +"";
             var uri = new Uri(string.Format(sURL));
-            var responsepaci = await client.GetAsync(uri);
-
 
             //Classe para deserializar o retorno
             var resultMoviesDetails = new MovieDetailsResult();
 
-            //verificando se o status code é OK
-            if (responsepaci.IsSuccessStatusCode)
+            try
             {
-                //pegando o retorno de lendo em async
-                var content = responsepaci.Content.ReadAsStringAsync().Result;
+                var responsepaci = await client.GetAsync(uri);
+
+                //verificando se o status code é OK
+                if (responsepaci.IsSuccessStatusCode)
+                {
+                    //pegando o retorno de lendo em async
+                    var content = responsepaci.Content.ReadAsStringAsync().Result;
 
 
-                //deserializando o conteudo para a classe result
-                resultMoviesDetails = JsonConvert.DeserializeObject<MovieDetailsResult>(content);
+                    //deserializando o conteudo para a classe result
+                    resultMoviesDetails = JsonConvert.DeserializeObject<MovieDetailsResult>(content);
 
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
             }
 
             return resultMoviesDetails;
@@ -76,30 +88,33 @@ namespace movies.Helpers
 
         public async Task<IList<Result>> GetSearchAsync(string query, int pageIndex, int pageSize)
         {
-            await Task.Delay(2000);
-
-            HttpClient client = new HttpClient();
-
+ 
             //Fazendo um GET no serviço
 
-            string sURL = "https://api.themoviedb.org/3/search/movie?api_key=1f54bd990f1cdfb230adb312546d765d&language=en-US&query="+ query +"&page=1&include_adult=false&page=" + pageIndex + "";
+            string sURL = Settings.ApiUrl + "/search/movie?api_key=" + Settings.ApiKey + "&language=" + Settings.Language + "&query="+ query +"&include_adult=false&page=" + pageIndex + "";
             var uri = new Uri(string.Format(sURL));
-            var responsepaci = await client.GetAsync(uri);
-
 
             //Classe para deserializar o retorno
             var resultMovies = new MovieResults();
 
-            //verificando se o status code é OK
-            if (responsepaci.IsSuccessStatusCode)
+            try
             {
-                //pegando o retorno de lendo em async
-                var content = responsepaci.Content.ReadAsStringAsync().Result;
+                var responsepaci = await client.GetAsync(uri);
 
+                //verificando se o status code é OK
+                if (responsepaci.IsSuccessStatusCode)
+                {
+                    //pegando o retorno de lendo em async
+                    var content = responsepaci.Content.ReadAsStringAsync().Result;
 
-                //deserializando o conteudo para a classe result
-                resultMovies = JsonConvert.DeserializeObject<MovieResults>(content);
+                    //deserializando o conteudo para a classe result
+                    resultMovies = JsonConvert.DeserializeObject<MovieResults>(content);
 
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
             }
 
             return resultMovies.results;

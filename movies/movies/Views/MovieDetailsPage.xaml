@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="movies.Views.MovieDetailsPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             x:Class="movies.Views.MovieDetailsPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="fecharItem" Order="Primary" Text="Exit" Priority="0" Clicked="Handle_Clicked"/>
 
@@ -7,7 +9,10 @@
     <ContentPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5" Spacing="5">
-                <Image x:Name="img" WidthRequest="300" Source="{Binding PosterBig}" HorizontalOptions="CenterAndExpand" />
+                 <ffimageloading:CachedImage x:Name="img" WidthRequest="300" HorizontalOptions="CenterAndExpand" 
+                                            LoadingPlaceholder="loading" ErrorPlaceholder="error" DownsampleToViewSize="true"
+                                            Aspect="AspectFit"  CacheDuration="90" Source="{Binding PosterBig}">
+                   </ffimageloading:CachedImage> 
                 <Label x:Name="title" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Rating: " HorizontalOptions="FillAndExpand"/>

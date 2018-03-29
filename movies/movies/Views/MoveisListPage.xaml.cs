@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Acr.UserDialogs;
 using movies.Helpers;
 using movies.Models;
 using movies.ViewModels;
@@ -13,9 +14,9 @@ namespace movies.Views
         {
             InitializeComponent();
 
-           // BindingContext = new MovieViewModel();
+            BindingContext = new MovieViewModel(UserDialogs.Instance);
 
-            // = BindingContext;
+       
         }
 
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

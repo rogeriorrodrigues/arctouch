@@ -6,7 +6,7 @@ namespace movies
 {
     public partial class App : Application
     {
-        public MovieViewModel teste = new MovieViewModel();
+        
 
         public App()
         {
