@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using movies.Models;
+using movies.ViewModels;
 using Xamarin.Forms;
 
 namespace movies.Views
 {
     public partial class MovieDetailsPage : ContentPage
     {
+        MovieDetailsViewModel ViewModel => vm ?? (vm = BindingContext as MovieDetailsViewModel);
+        MovieDetailsViewModel vm;
+
         public MovieDetailsPage(Result movie)
         {
             InitializeComponent();
 
-            img.Source = movie.PosterBig;
-            title.Text = movie.title;
-            overview.Text = movie.overview;
-            releasedate.Text = movie.release_date.ToString();
-            rating.Text = movie.vote_average.ToString();
+            BindingContext = new MovieDetailsViewModel(Navigation , movie);
+           
+            ViewModel.MovieDetailsCommand.Execute(null);
+
+
+           
+          
         }
 
         async void Handle_Clicked(object sender, System.EventArgs e)

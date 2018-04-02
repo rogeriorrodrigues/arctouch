@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
+using System.Windows.Input;
+
 namespace movies.Models
 {
     public class MovieResults

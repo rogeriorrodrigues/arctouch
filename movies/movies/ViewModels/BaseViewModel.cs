@@ -62,6 +62,16 @@ namespace movies.ViewModels
             set { SetProperty(ref isBusy, value, IsBusyPropertyName); }
         }
 
+        bool isNotBusy;
+
+        public const string IsNotBusyPropertyName = "IsNotBusy";
+
+        public bool IsNotBusy
+        {
+            get { return isNotBusy; }
+            set { SetProperty(ref isNotBusy, value, IsNotBusyPropertyName); }
+        }
+
         string title = string.Empty;
 
         public const string TitlePropertyName = "Title";

@@ -18,32 +18,42 @@ namespace movies.ViewModels
 
        
 
-        public MovieViewModel(IUserDialogs dialogs)
+        public MovieViewModel()
         {
            
-            Items = new InfiniteScrollCollection<Result>
+            try
             {
-                OnLoadMore = async () =>
+                Items = new InfiniteScrollCollection<Result>
                 {
-                    IsBusy = true;
+                    OnLoadMore = async () =>
+                    {
+                        IsBusy = true;
 
 
-                    var page = Items.Count / PageSize;
+                        var page = Items.Count / PageSize;
 
-                    var items = await _dataService.GetItemsAsync(page, PageSize);
+                        var items = await _dataService.GetItemsAsync(page, PageSize);
 
-                    IsBusy = false;
+                        IsBusy = false;
 
 
-                    return items;
-                },
-                OnCanLoadMore = () =>
-                {
-                    return Items.Count > 0;
-                }
-            };
+                        return items;
+                    },
+                    OnCanLoadMore = () =>
+                    {
+                        return Items.Count > 0;
+                    }
+                };
 
-            DownloadDataAsync();
+                DownloadDataAsync();
+            }
+            catch (System.Exception ex)
+            {
+                App.Current.MainPage.DisplayAlert("Oops...", "Deu Ruim na conexão. Tente Novamente", "Ok");
+            }
+
+
+           
         }
 
         private async Task DownloadDataAsync()

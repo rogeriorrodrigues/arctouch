@@ -26,6 +26,25 @@
                     <Label Text="Release Date: "/>
                     <Label x:Name="releasedate" Text="{Binding release_date, StringFormat='{0:D}'}" />
                 </StackLayout>
+                <StackLayout Orientation="Horizontal " HorizontalOptions="FillAndExpand">
+                <ListView ItemsSource="{Binding genres}"
+                  CachingStrategy="RecycleElement"
+                  HasUnevenRows="True" RowHeight="30">
+                        <ListView.ItemTemplate >
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="10" >
+                                        <StackLayout Orientation="Horizontal" >
+                                                <Label Text="Genre: "  FontSize="20" FontAttributes="Bold" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                                                <Label Text="{Binding name}"  FontSize="20" FontAttributes="Bold" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

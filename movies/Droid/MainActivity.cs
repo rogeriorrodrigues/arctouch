@@ -23,7 +23,7 @@ namespace movies.Droid
             base.OnCreate(bundle);
 
             UserDialogs.Init(this);
-            CachedImageRenderer.Init();
+            CachedImageRenderer.Init(true);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 

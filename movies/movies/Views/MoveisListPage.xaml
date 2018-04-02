@@ -19,7 +19,7 @@
                   ItemTapped="Handle_ItemTapped"                
                   CachingStrategy="RecycleElement"
                   ItemSelected="Handle_ItemSelected"
-                  HasUnevenRows="True" RowHeight="100">
+                  HasUnevenRows="True" RowHeight="100" >
 
             <ListView.Behaviors>
                 <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
