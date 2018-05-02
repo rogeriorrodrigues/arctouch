@@ -4,52 +4,7 @@ using Newtonsoft.Json;
 
 namespace movies.Models
 {
-    public class Genre
-    {
-
-        [JsonProperty("id")]
-        public int id { get; set; }
-
-        [JsonProperty("name")]
-        public string name { get; set; }
-    }
-
-    public class ProductionCompany
-    {
-
-        [JsonProperty("id")]
-        public int id { get; set; }
-
-        [JsonProperty("logo_path")]
-        public object logo_path { get; set; }
-
-        [JsonProperty("name")]
-        public string name { get; set; }
-
-        [JsonProperty("origin_country")]
-        public string origin_country { get; set; }
-    }
-
-    public class ProductionCountry
-    {
-
-        [JsonProperty("iso_3166_1")]
-        public string iso_3166_1 { get; set; }
-
-        [JsonProperty("name")]
-        public string name { get; set; }
-    }
-
-    public class SpokenLanguage
-    {
-
-        [JsonProperty("iso_639_1")]
-        public string iso_639_1 { get; set; }
-
-        [JsonProperty("name")]
-        public string name { get; set; }
-    }
-
+  
     public class MovieDetailsResult
     {
 

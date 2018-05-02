@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:local="clr-namespace:movies.ViewModels"
              x:Class="movies.Views.MoviesSearchPage">
     <ContentPage.BindingContext>
@@ -9,9 +10,9 @@
 
     <StackLayout>
 
-        <Label Text="ArcTouch Movie Search" FontSize="26" HorizontalOptions="CenterAndExpand" TextColor="DeepPink" Margin="20,0" />
-        <SearchBar x:Name="searchbar" Text="{Binding Term, Mode=TwoWay}" SearchCommand="{Binding SearchCommand}" HorizontalOptions="CenterAndExpand" Margin="20,0" Placeholder="Search"/>
-
+        <Label Text="ArcTouch Movie Search" FontSize="26" HorizontalOptions="CenterAndExpand" TextColor="Black" Margin="20,0" />
+        <SearchBar x:Name="searchbar" Text="{Binding Term, Mode=TwoWay}" SearchCommand="{Binding FilterMovieCommand}" HorizontalOptions="CenterAndExpand" Margin="20,0"  Placeholder="Search..."/>
+      
         <ListView ItemsSource="{Binding Items}"
                   ItemTapped="Handle_ItemTapped"                
                   CachingStrategy="RecycleElement"
@@ -27,7 +28,11 @@
                     <ViewCell>
                         <Grid Padding="10" >
                             <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                                <Image Source="{Binding PosterLittle}" WidthRequest="92" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                                <ffimageloading:CachedImage HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                            LoadingPlaceholder="loading" ErrorPlaceholder="error" DownsampleToViewSize="true"
+                                            Aspect="AspectFit"  WidthRequest="92" CacheDuration="90" Source="{Binding PosterLittle}">
+                                        </ffimageloading:CachedImage>
+                          
                                 <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
                                     <Label Text="{Binding title}"  FontSize="20" FontAttributes="Bold" TextColor="Black" VerticalOptions="CenterAndExpand"/>
                                     <Label Text="{Binding release_date, StringFormat='{0:D}'}"  FontSize="20" FontAttributes="Bold" TextColor="Black" VerticalOptions="CenterAndExpand"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Acr.UserDialogs;
 using movies.Helpers;
 using movies.Models;
 using movies.ViewModels;
@@ -13,13 +14,9 @@ namespace movies.Views
         {
             InitializeComponent();
 
-           // BindingContext = new MovieViewModel();
-
-            // = BindingContext;
         }
 
-        void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        => ((ListView)sender).SelectedItem = null;
+       void Handle_ItemTapped(object sender, ItemTappedEventArgs e) => ((ListView)sender).SelectedItem = null;
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

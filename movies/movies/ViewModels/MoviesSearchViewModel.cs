@@ -10,7 +10,7 @@ namespace movies.ViewModels
 {
     public class MoviesSearchViewModel : BaseViewModel
     {
-        private const int PageSize = 10;
+        private const int PageSize = 20;
         readonly DataService _dataService = new DataService();
 
         public InfiniteScrollCollection<Result> Items { get; set; }
@@ -40,7 +40,7 @@ namespace movies.ViewModels
                     },
                     OnCanLoadMore = () =>
                     {
-                        return Items.Count < 44;
+                        return Items.Count > 0;
                     }
                 };
 
@@ -49,6 +49,8 @@ namespace movies.ViewModels
             
 
         }
+
+
 
         public string Term
         {
